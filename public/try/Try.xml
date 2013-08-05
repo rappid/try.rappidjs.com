@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<try:TryClass xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:js="js.core" xmlns:ui="js.ui" xmlns:try="try"
+                xmlns:conf="js.conf">
+
+    <js:Router cid="router">
+        <!--<conf:RouteConfiguration route="^$" onexec="defaultRoute"/>-->
+    </js:Router>
+
+    <header id="header">
+        <div class="branding">
+            Try
+        </div>
+        <div class="actions">
+            <ul>
+                <li class="run">
+                    <a onclick="run">Run</a>
+                </li>
+                <li class="save">
+                    <a>Save</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <div id="wrapper">
+        <div id="sidebar">
+            Sidebar
+        </div>
+        <div id="content">
+            <div class="files">
+                <!--<ui:ItemsView items="{files}">-->
+                    <!--<js:Template name="item">-->
+
+                    <!--</js:Template>-->
+                <!--</ui:ItemsView>-->
+            </div>
+            <div class="result">
+                <iframe cid="contentFrame" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts"/>
+            </div>
+
+        </div>
+    </div>
+
+</try:TryClass>
