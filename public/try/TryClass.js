@@ -38,7 +38,12 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
 
         run: function() {
 
-            var contentFrame = this.$.contentFrame;
+            var contentFrame = this.$.contentFrameTemplate.createInstance(),
+                result = this.$.result;
+
+            result.removeAllChildren();
+
+            result.addChild(contentFrame);
 
             var doc = contentFrame.$el.contentWindow || contentFrame.$.el.contentDocument,
                 wnd = contentFrame.$el.contentWindow,

@@ -35,11 +35,14 @@
                     <!--</js:Template>-->
                 <!--</ui:ItemsView>-->
             </div>
-            <div class="result">
-                <iframe cid="contentFrame" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts"/>
-            </div>
+            <div class="result" cid="result">
 
+            </div>
         </div>
     </div>
+
+    <js:Template cid="contentFrameTemplate" name="contentFrame">
+        <iframe sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts"/>
+    </js:Template>
 
 </try:TryClass>
