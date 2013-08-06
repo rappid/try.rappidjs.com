@@ -1,0 +1,118 @@
+@import "mixin.scss";
+
+$brand: #3D6AA2;
+$sidebarWidth: 200px;
+
+$light: #b0b0b0;
+$middle: #6c6c6c;
+$dark: #373737;
+
+$lightBackground: #F0F0F0;
+$lightBorder: #e1e1e1;
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+
+  font-family: Helvetica;
+  font-size: 13px;
+}
+
+body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: $brand;
+  color: white;
+
+  .branding {
+    display: inline-block;
+    width: $sidebarWidth;
+  }
+
+  .actions {
+    display: inline-block;
+
+    li {
+      display: inline-block;
+
+      a {
+        display: inline-block;
+        padding: 10px;
+        margin-right: 1px;
+        background: darken($brand, 5%);
+
+        .no-touch &:hover {
+          background: darken($brand, 10%);
+        }
+      }
+    }
+
+  }
+}
+
+#wrapper {
+  position: absolute;
+  top: 35px;
+  width: 100%;
+  bottom: 0;
+
+  #sidebar {
+    position: absolute;
+    width: $sidebarWidth;
+    height: 100%;
+  }
+
+  #content {
+    position: absolute;
+    left: $sidebarWidth;
+    right: 0;
+    height: 100%;
+
+    background: $lightBackground;
+
+    > div {
+      position: absolute;
+      left: 5px;
+      right: 5px;
+      top: 5px;
+      bottom: 5px;
+    }
+
+    > div > * {
+      position: absolute;
+      height: 100%;
+      border: 1px solid $lightBorder;
+      width: 49%;
+      background: white;
+    }
+
+    #result {
+
+      left: 51%;
+
+      iframe {
+        border: 0;
+      }
+
+    }
+
+  }
+
+
+
+}

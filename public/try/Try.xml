@@ -28,16 +28,20 @@
             Sidebar
         </div>
         <div id="content">
-            <div class="files">
-                <!--<ui:ItemsView items="{files}">-->
-                    <!--<js:Template name="item">-->
+            <div>
+                <div class="files">
+                    <ui:TabView>
+                        <js:Repeat items="{openFiles}" itemKey="file">
+                            <ui:Tab title="{file.path}">
+                                <textarea>{{file.content}}</textarea>
+                            </ui:Tab>
+                        </js:Repeat>
+                    </ui:TabView>
+                </div>
 
-                    <!--</js:Template>-->
-                <!--</ui:ItemsView>-->
+                <div id="result" cid="result"/>
             </div>
-            <div class="result" cid="result">
 
-            </div>
         </div>
     </div>
 

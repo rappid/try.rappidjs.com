@@ -2,7 +2,7 @@
 <app:AppClass xmlns="http://www.w3.org/1999/xhtml"
               xmlns:app="app"
               xmlns:js="js.core" xmlns:ui="js.ui" xmlns:field="js.ui.field">
-    <div class="container">
+    <div>
         <h1>Congratulations</h1>
         <p>
             Your Application "{appName}" is running!

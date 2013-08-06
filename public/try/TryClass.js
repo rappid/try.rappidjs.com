@@ -9,13 +9,16 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
              */
             contentFrame: null,
 
-            files: List
+            files: List,
+            openFiles: List
         },
 
         ctor: function() {
             this.callBase();
 
             this.createDefaultFiles();
+            this.$.openFiles.reset(this.$.files.toArray());
+
         },
 
         createDefaultFiles: function() {
@@ -34,6 +37,8 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
             });
             file.set("content", AppClassTemplate);
             files.add(file);
+
+
         },
 
         run: function() {
@@ -51,7 +56,6 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
                 files = this.$.files;
 
             runConfig = JSON.parse(config);
-//            runConfig.context = "try";
 
             files.each(function(file) {
                 var path = file.$.path.replace(/\.[^.]+$/, "");

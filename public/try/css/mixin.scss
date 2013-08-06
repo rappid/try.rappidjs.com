@@ -1,0 +1,19 @@
+$gradientFrom: #f6f6f6;
+$gradientTo: #e9e9e9;
+
+@mixin gradient($from: $gradientFrom, $to: $gradientTo) {
+/* fallback/image non-cover color */
+  background-color: $from;
+
+/* Firefox 3.6+ */
+  background-image: -moz-linear-gradient($from, $to);
+
+/* Safari 4+, Chrome 1+ */
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from), to($to));
+
+/* Safari 5.1+, Chrome 10+ */
+  background-image: -webkit-linear-gradient($from, $to);
+
+/* Opera 11.10+ */
+  background-image: -o-linear-gradient($from, $to);
+}
