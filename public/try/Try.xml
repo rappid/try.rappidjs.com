@@ -1,11 +1,7 @@
 <?xml version="1.0"?>
 <try:TryClass xmlns="http://www.w3.org/1999/xhtml"
               xmlns:js="js.core" xmlns:ui="js.ui" xmlns:try="try"
-              xmlns:view="try.view">
-
-    <js:Router cid="router">
-        <!--<conf:RouteConfiguration route="^$" onexec="defaultRoute"/>-->
-    </js:Router>
+        >
 
     <header id="header">
         <div class="branding">
