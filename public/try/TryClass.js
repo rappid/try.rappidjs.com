@@ -127,9 +127,6 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
             doc.close();
 
             wnd.onload = function() {
-
-
-                console.log(JSON.stringify(runConfig));
                 wnd.window.rAppid.bootStrap("app/App.xml", null, null, runConfig, function (err) {
                     err && console.error(err);
                 });
