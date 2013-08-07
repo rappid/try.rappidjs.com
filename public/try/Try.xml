@@ -5,32 +5,72 @@
 
     <header id="header">
         <div class="branding">
-            Try <span>&lt;rAppid:js /&gt;</span>
+            Try
+            <span>&lt;rAppid:js /&gt;</span>
         </div>
         <div class="actions">
             <ul>
                 <li class="run">
                     <a onclick="run">Run</a>
                 </li>
-                <li class="save">
-                    <a>Save</a>
-                </li>
+                <!--<li class="save">-->
+                <!--<a>Save</a>-->
+                <!--</li>-->
             </ul>
         </div>
     </header>
 
     <div id="wrapper">
         <div id="sidebar">
-            <div>
-                <a onclick="addNewFile">+</a>
-            </div>
-            <ui:SelectionView items="{files}" itemKey="file" class="files">
-                <js:Template name="item">
-                    <div class="{file.extension()}">
-                        <a onclick="openFile(file)">{file.path}</a>
+
+            <ul>
+                <li>
+                    <h2>Project</h2>
+                    <div>
+                        <a onclick="addNewFile">+</a>
                     </div>
-                </js:Template>
-            </ui:SelectionView>
+                    <ui:SelectionView items="{files}" itemKey="file" class="files">
+                        <js:Template name="item">
+                            <div class="{file.extension()}">
+                                <a onclick="openFile(file)">{file.path}</a>
+                            </div>
+                        </js:Template>
+                    </ui:SelectionView>
+                </li>
+                <li>
+                    <h2>Info</h2>
+                    <p>Create and maintained by the authors of rAppid:js
+                        <a href="http://tonyfindeisen.de">Tony Findeisen</a>
+                        and
+                        <a href="https://twiiter.com/krebbl">Marcus Krejpowicz</a>.
+                    </p>
+                    <p>
+                        Inspired by <a href="http://jsfiddle.net/">jsfiddle</a>.
+                    </p>
+
+                    <h3>License</h3>
+                    <p>All code belongs to the poster and no license is enforced.</p>
+                    <p>The authors of try.rappidjs.com are not responsible or liable for
+                        any loss or damage of any kind during the usage of provided code.</p>
+
+                    <h3>Links</h3>
+                    <p>
+                        <a href="http://www.rappidjs.com">Install</a> &lt;rAppid:js /&gt;,
+                        read the
+                        <a href="http://wiki.rappidjs.com">documentation</a> and
+                        <a href="https://github.com/rappid/rAppid.js">contribute</a>
+                        to the framework.
+                    </p>
+                    <p>
+                        Start reading our
+                        <a href="http://blog.rappidjs.com">blog</a>
+                        and
+                        <a href="https://twiiter.com/rappidjs">follow us</a>.
+                    </p>
+                </li>
+            </ul>
+
+
         </div>
         <div id="content">
 

@@ -20,7 +20,7 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
             this.callBase();
 
             this.createDefaultFiles();
-//            this.$.openFiles.reset(this.$.files.toArray());
+            this.$.openFiles.reset(this.$.files.toArray());
 
         },
 

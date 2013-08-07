@@ -85,6 +85,36 @@ header {
     position: absolute;
     width: $sidebarWidth;
     height: 100%;
+
+    box-sizing: border-box;
+
+    a {
+      color: $brand;
+    }
+
+    li {
+      overflow: hidden;
+      padding: 10px;
+      border-bottom: 1px solid $light;
+    }
+
+    h2 {
+      display: block;
+      font-size: 15px;
+      margin: 5px 0;
+      margin-bottom: 10px;
+    }
+
+    p, h3 {
+      font-size: 0.85em;
+      line-height: 1.3em;
+      margin: 5px 0;
+    }
+
+    h3 {
+      margin-top: 10px;
+    }
+
   }
 
   #content {
