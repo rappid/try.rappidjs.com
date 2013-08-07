@@ -1,4 +1,4 @@
-define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/start.html", "raw!try/templates/config.json", "raw!try/templates/App.xml", "raw!try/templates/AppClass.js", "try/model/File"], function(Application, _, List, start, config, AppTemplate, AppClassTemplate, File) {
+define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/start.html", "raw!try/templates/config.json", "raw!try/templates/App.xml", "raw!try/templates/AppClass.js", "try/model/File", "JSON"], function(Application, _, List, start, config, AppTemplate, AppClassTemplate, File, JSON) {
 
 
     return Application.inherit({
@@ -9,6 +9,9 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
              */
             contentFrame: null,
 
+            selectedTab: null,
+            selectedFile: null,
+
             files: List,
             openFiles: List
         },
@@ -17,7 +20,7 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
             this.callBase();
 
             this.createDefaultFiles();
-            this.$.openFiles.reset(this.$.files.toArray());
+//            this.$.openFiles.reset(this.$.files.toArray());
 
         },
 
@@ -38,6 +41,40 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
             file.set("content", AppClassTemplate);
             files.add(file);
 
+        },
+
+        addNewFile: function() {
+
+        },
+
+        openFile: function(file) {
+
+            if (!file) {
+                return;
+            }
+
+            if (!this.$.openFiles.includes(file)) {
+                this.$.openFiles.add(file);
+            }
+
+            this.set("selectedFile", file);
+        },
+
+        _commitSelectedFile: function(file) {
+
+            if (!file) {
+                return;
+            }
+
+            var openFilesTabView = this.$.openFilesTabView;
+
+            for (var i = 0; i < openFilesTabView.$children.length; i++) {
+                var tab = openFilesTabView.$children[i];
+                if (tab.$._file === file) {
+                    this.set("selectedTab", tab);
+                    return;
+                }
+            }
 
         },
 
@@ -97,8 +134,6 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
                     err && console.error(err);
                 });
             }
-
-
 
         }
 

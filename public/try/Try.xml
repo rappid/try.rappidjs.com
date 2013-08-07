@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <try:TryClass xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:js="js.core" xmlns:ui="js.ui" xmlns:try="try"
-                xmlns:conf="js.conf">
+              xmlns:js="js.core" xmlns:ui="js.ui" xmlns:try="try"
+              xmlns:view="try.view">
 
     <js:Router cid="router">
         <!--<conf:RouteConfiguration route="^$" onexec="defaultRoute"/>-->
@@ -25,15 +25,24 @@
 
     <div id="wrapper">
         <div id="sidebar">
-            Files
+            <div>
+                <a onclick="addNewFile">+</a>
+            </div>
+            <ui:SelectionView items="{files}" itemKey="file" class="files">
+                <js:Template name="item">
+                    <div class="{file.extension()}">
+                        <a onclick="openFile(file)">{file.path}</a>
+                    </div>
+                </js:Template>
+            </ui:SelectionView>
         </div>
         <div id="content">
 
             <div class="left">
                 <div class="files">
-                    <ui:TabView>
+                    <ui:TabView selectedTab="{{selectedTab}}" cid="openFilesTabView">
                         <js:Repeat items="{openFiles}" itemKey="file">
-                            <ui:Tab title="{file.path}">
+                            <ui:Tab title="{file.path}" _file="{file}">
                                 <textarea>{{file.content}}</textarea>
                             </ui:Tab>
                         </js:Repeat>
