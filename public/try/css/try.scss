@@ -43,6 +43,15 @@ header {
   .branding {
     display: inline-block;
     width: $sidebarWidth;
+    font-family: "Courier New";
+
+    box-sizing: border-box;
+    padding-left: 10px;
+    font-size: 1.2em;
+
+    span {
+      font-weight: bold;
+    }
   }
 
   .actions {
@@ -126,7 +135,11 @@ header {
           position: relative;
           left: 1px;
           margin-left: -1px;
-          padding: 3px 30px;
+
+          a {
+            padding: 3px 30px;
+            display: inline-block;
+          }
 
           background: $lightBackground;
 
@@ -159,6 +172,8 @@ header {
           border: 0 none;
           margin: 0;
           padding: 0;
+
+          resize: none;
         }
       }
 
@@ -179,6 +194,21 @@ header {
         border: 0;
         width: 100%;
         height: 100%;
+
+        position: relative;
+      }
+
+      &:before {
+        content: "Result";
+        display: block;
+
+        border: 1px solid $lightBorder;
+        padding: 2px 5px;
+        color: gray;
+
+        position: absolute;
+        right: 5px;
+        top: 5px;
       }
 
     }
