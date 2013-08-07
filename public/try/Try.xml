@@ -9,7 +9,7 @@
 
     <header id="header">
         <div class="branding">
-            Try
+            Try <span>&lt;rAppid:js /&gt;</span>
         </div>
         <div class="actions">
             <ul>
