@@ -25,10 +25,11 @@
 
     <div id="wrapper">
         <div id="sidebar">
-            Sidebar
+            Files
         </div>
         <div id="content">
-            <div>
+
+            <div class="left">
                 <div class="files">
                     <ui:TabView>
                         <js:Repeat items="{openFiles}" itemKey="file">
@@ -38,7 +39,9 @@
                         </js:Repeat>
                     </ui:TabView>
                 </div>
+            </div>
 
+            <div class="right">
                 <div id="result" cid="result"/>
             </div>
 
