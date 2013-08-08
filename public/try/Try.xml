@@ -81,8 +81,8 @@
                         </js:Template>
 
                         <js:Repeat items="{openFiles}" itemKey="file">
-                            <ui:Tab title="{file.path}" _file="{file}">
-                                <textarea>{{file.content}}</textarea>
+                            <ui:Tab title="{file.path}">
+                                <textarea updateOnEvent="keyup">{{file.content}}</textarea>
                             </ui:Tab>
                         </js:Repeat>
                     </ui:TabView>
