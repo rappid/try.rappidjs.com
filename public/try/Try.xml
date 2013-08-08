@@ -70,13 +70,16 @@
                 </li>
             </ul>
 
-
         </div>
         <div id="content">
-
             <div class="left">
                 <div class="files">
                     <ui:TabView selectedTab="{{selectedTab}}" cid="openFilesTabView">
+                        <js:Template name="tab">
+                            <a class="close" onclick="closeFile(item.file)">x</a>
+                            <ui:Link class="label" label="{item.title}"/>
+                        </js:Template>
+
                         <js:Repeat items="{openFiles}" itemKey="file">
                             <ui:Tab title="{file.path}" _file="{file}">
                                 <textarea>{{file.content}}</textarea>

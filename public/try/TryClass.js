@@ -60,6 +60,10 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
             this.set("selectedFile", file);
         },
 
+        closeFile: function(file) {
+            this.$.openFiles.remove(file);
+        },
+
         _commitSelectedFile: function(file) {
 
             if (!file) {

@@ -166,9 +166,20 @@ header {
           left: 1px;
           margin-left: -1px;
 
-          a {
+          .label {
             padding: 3px 30px;
             display: inline-block;
+          }
+
+          .close {
+            position: absolute;
+            right: 5px;
+            height: 20px;
+            top: 50%;
+            margin-top: -10px;
+            line-height: 20px;
+            display: inline-block;
+            color: gray;
           }
 
           background: $lightBackground;
