@@ -40,12 +40,12 @@
                 <li>
                     <h2>Info</h2>
                     <p>Create and maintained by the authors of rAppid:js
-                        <a href="http://tonyfindeisen.de">Tony Findeisen</a>
+                        <a target="_blank" href="http://tonyfindeisen.de">Tony Findeisen</a>
                         and
-                        <a href="https://twiiter.com/krebbl">Marcus Krejpowicz</a>.
+                        <a target="_blank" href="https://twiiter.com/krebbl">Marcus Krejpowicz</a>.
                     </p>
                     <p>
-                        Inspired by <a href="http://jsfiddle.net/">jsfiddle</a>.
+                        Inspired by <a target="_blank" href="http://jsfiddle.net/">jsfiddle</a>.
                     </p>
 
                     <h3>License</h3>
@@ -55,17 +55,17 @@
 
                     <h3>Links</h3>
                     <p>
-                        <a href="http://www.rappidjs.com">Install</a> &lt;rAppid:js /&gt;,
+                        <a target="_blank" href="http://www.rappidjs.com">Install</a> &lt;rAppid:js /&gt;,
                         read the
-                        <a href="http://wiki.rappidjs.com">documentation</a> and
-                        <a href="https://github.com/rappid/rAppid.js">contribute</a>
+                        <a target="_blank" href="http://wiki.rappidjs.com">documentation</a> and
+                        <a target="_blank" href="https://github.com/rappid/rAppid.js">contribute</a>
                         to the framework.
                     </p>
                     <p>
                         Start reading our
-                        <a href="http://blog.rappidjs.com">blog</a>
+                        <a target="_blank" href="http://blog.rappidjs.com">blog</a>
                         and
-                        <a href="https://twiiter.com/rappidjs">follow us</a>.
+                        <a target="_blank" href="https://twiiter.com/rappidjs">follow us</a>.
                     </p>
                 </li>
             </ul>
