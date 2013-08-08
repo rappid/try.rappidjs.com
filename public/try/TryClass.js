@@ -62,6 +62,7 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
 
         closeFile: function(file) {
             this.$.openFiles.remove(file);
+            this.set("selectedFile", this.$.openFiles.at(0));
         },
 
         _commitSelectedFile: function(file) {
