@@ -1,0 +1,19 @@
+{
+  "name": "try.rappidjs.com",
+  "version": "0.1.0",
+  "author": "rAppid <support@rappidjs.com> (http://rappidjs.com)",
+  "contributors": [
+    "Tony Findeisen <tony@rappidjs.com>",
+    "Marcus Krejpowicz <marcus@rappidjs.com>"
+  ],
+  "description": "Try rAppid.js online without installation",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rappid/try.rappidjs.com.git"
+  },
+  "dependencies": {
+    "rAppid.js": "latest"
+  },
+  "license": "MIT",
+  "homepage": "http://try.rappidjs.com"
+}
