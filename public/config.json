@@ -26,8 +26,8 @@
         "js/ui/field/Text",
         "js/ui/field/TextArea",
         "try/Try",
-        "webtest/test/core/StageTest",
-        "webtest/test/html/SelectTest",
+        "try/templates/App",
+        "try/window/NewFileDialog",
         "webtest/test/ui/ItemsViewTest"
     ],
     "namespaceMap": null,

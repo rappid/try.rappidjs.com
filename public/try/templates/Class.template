@@ -1,0 +1,10 @@
+define(["{ImportNamespace}"], function({ImportClass}) {
+
+    return {ImportClass}.inherit("{fqClassName}", {
+
+        defaults: {
+        }
+
+    });
+
+});

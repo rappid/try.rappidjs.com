@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <try:TryClass xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:js="js.core" xmlns:ui="js.ui" xmlns:try="try"
+              xmlns:js="js.core" xmlns:ui="js.ui" xmlns:try="try" xmlns:window="try.window"
         >
 
     <header id="header">
@@ -27,7 +27,7 @@
                 <li>
                     <h2>Project</h2>
                     <div>
-                        <a onclick="addNewFile">+</a>
+                        <a onclick="addNewFile">+ Add file</a>
                     </div>
                     <ui:SelectionView items="{files}" itemKey="file" class="files">
                         <js:Template name="item">
@@ -99,5 +99,9 @@
     <js:Template cid="contentFrameTemplate" name="contentFrame">
         <iframe sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts"/>
     </js:Template>
+
+    <js:Content>
+        <window:NewFileDialog cid="newFileDialog"/>
+    </js:Content>
 
 </try:TryClass>

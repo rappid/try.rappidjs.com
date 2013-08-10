@@ -1,0 +1,5 @@
+<{prefix}:{parentClass} xmlns="http://www.w3.org/1999/xhtml"
+                        xmlns:{prefix}="{parentNamespace}"
+                        xmlns:core="js.core" xmlns:ui="js.ui" xmlns:field="js.ui.field">
+
+</{prefix}:{parentClass}>

@@ -1,6 +1,5 @@
 define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/start.html", "raw!try/templates/config.json", "raw!try/templates/App.xml", "raw!try/templates/AppClass.js", "try/model/File", "JSON"], function(Application, _, List, start, config, AppTemplate, AppClassTemplate, File, JSON) {
 
-
     return Application.inherit({
 
         defaults: {
@@ -13,7 +12,9 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
             selectedFile: null,
 
             files: List,
-            openFiles: List
+            openFiles: List,
+
+            newFileDialog: null
         },
 
         ctor: function() {
@@ -44,7 +45,21 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
         },
 
         addNewFile: function() {
+            var newFileDialog = this.$.newFileDialog,
+                self = this;
 
+            newFileDialog.showModal(function(err, wnd, files) {
+
+                if (files) {
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+
+                        self.$.files.add(file);
+                        self.openFile(file);
+                    }
+                }
+
+            });
         },
 
         openFile: function(file) {

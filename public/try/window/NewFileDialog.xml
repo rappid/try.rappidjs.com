@@ -1,0 +1,23 @@
+<window:NewFileDialogClass xmlns:window="try.window" xmlns:js="js.core" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="js.ui" xmlns:field="js.ui.field"
+        name="new-file" class="new-file">
+
+    <js:Content name="body">
+        <field:Text label="Class" value="{{className}}"/>
+        <field:Text label="Parent class" value="{{parentClassName}}"/>
+
+        <ui:Checkbox label="XAML" checked="{{isXaml}}" />
+
+        <div class="load-template">
+            <ui:Button label="Model" onclick="loadTemplate('Model')"/>
+            <ui:Button label="Component" onclick="loadTemplate('Component')"/>
+            <ui:Button label="Module" onclick="loadTemplate('Module')"/>
+        </div>
+
+    </js:Content>
+
+    <js:Content name="footer">
+        <ui:Button label="Cancel" onclick="closeDialog"/>
+        <ui:Button label="Create" type="success" onclick="confirmDialog"/>
+    </js:Content>
+
+</window:NewFileDialogClass>
