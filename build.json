@@ -13,5 +13,6 @@
         "max_line_length": 250
     },
     "usePackageVersion": true,
-    "removeSpaces": true
+    "removeSpaces": true,
+    "removeCombined": false
 }
