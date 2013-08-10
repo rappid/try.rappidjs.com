@@ -1,0 +1,17 @@
+{
+    "modules": [
+        {
+            "name": "try/Try",
+            "include": [
+                "xaml!try/Try"
+            ]
+        }
+    ],
+    "indexFile": "index.html",
+    "targetDir": "public-build",
+    "uglify": {
+        "max_line_length": 250
+    },
+    "usePackageVersion": true,
+    "removeSpaces": true
+}
