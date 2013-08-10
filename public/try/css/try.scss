@@ -166,6 +166,7 @@ header {
           position: relative;
           left: 1px;
           margin-left: -1px;
+          margin-bottom: -1px;
 
           .label {
             padding: 3px 30px;
@@ -188,7 +189,7 @@ header {
           border: 1px solid $light;
           border-top-left-radius: 5px;
           border-top-right-radius: 5px;
-          border-bottom: 0 none;
+
 
           &.active {
             background: $grayHighlight;
