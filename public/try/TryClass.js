@@ -114,6 +114,11 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
 
             runConfig = JSON.parse(config);
 
+            var version = this.PARAMETER().version || "";
+            if (version) {
+                runConfig.baseUrl = "" + version;
+            }
+
             files.each(function(file) {
                 var path = file.$.path.replace(/\.[^.]+$/, "");
 
@@ -143,7 +148,7 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
             };
 
             doc.open();
-            doc.write(start);
+            doc.write(start.replace(/\$\{version\}/g, version));
             doc.close();
 
             wnd.onload = function() {
