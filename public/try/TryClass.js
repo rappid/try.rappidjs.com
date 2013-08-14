@@ -135,18 +135,6 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
                 doc = doc.document;
             }
 
-            wnd.window.getVirtualFile = function (path) {
-
-                for (var i = 0; i < files.$items.length; i++) {
-                    var file = files.$items[i];
-                    if (file.$.path === path) {
-                        return file;
-                    }
-                }
-
-                throw new Error("File '" + path + "' not found.");
-            };
-
             doc.open();
             doc.write(start.replace(/\$\{version\}/g, version));
             doc.close();
