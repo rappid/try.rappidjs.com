@@ -1,5 +1,9 @@
 define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/start.html", "raw!try/templates/config.json", "raw!try/templates/App.xml", "raw!try/templates/AppClass.js", "try/model/File", "JSON"], function(Application, _, List, start, config, AppTemplate, AppClassTemplate, File, JSON) {
 
+    var modeMap = {
+        js: "javascript"
+    };
+
     return Application.inherit({
 
         defaults: {
@@ -62,6 +66,15 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
             });
         },
 
+        getMode: function(file) {
+            if (!file) {
+                return null
+            }
+
+            var extension = file.extension();
+            return modeMap[ extension] || extension;
+        },
+
         openFile: function(file) {
 
             if (!file) {
@@ -115,6 +128,11 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
             runConfig = JSON.parse(config);
 
             var version = this.PARAMETER().version || "";
+
+            if (version === "${VERSION}") {
+                version = "";
+            }
+
             if (version) {
                 runConfig.baseUrl = "" + version;
             }

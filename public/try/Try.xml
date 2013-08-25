@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <try:TryClass xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:js="js.core" xmlns:ui="js.ui" xmlns:try="try" xmlns:window="try.window"
+              xmlns:js="js.core" xmlns:ui="js.ui" xmlns:try="try" xmlns:window="try.window" xmlns:editor="try.editor"
         >
 
     <header id="header">
@@ -82,7 +82,7 @@
 
                         <js:Repeat items="{openFiles}" itemKey="file">
                             <ui:Tab title="{file.path}">
-                                <textarea updateOnEvent="keyup">{{file.content}}</textarea>
+                                <editor:Editor content="{{file.content}}" mode="{getMode(file)}"/>
                             </ui:Tab>
                         </js:Repeat>
                     </ui:TabView>
