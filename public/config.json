@@ -26,9 +26,9 @@
         "js/ui/field/Text",
         "js/ui/field/TextArea",
         "try/Try",
+        "try/data/TryDataSourceConfiguration",
         "try/templates/App",
         "try/window/NewFileDialog",
-        "webtest/test/html/SelectTest",
         "webtest/test/ui/ItemsViewTest",
         "webtest/test/ui/SelectionViewTest"
     ],

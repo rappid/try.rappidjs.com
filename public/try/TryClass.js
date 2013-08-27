@@ -1,4 +1,4 @@
-define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/start.html", "raw!try/templates/config.json", "raw!try/templates/App.xml", "raw!try/templates/AppClass.js", "try/model/File", "JSON"], function(Application, _, List, start, config, AppTemplate, AppClassTemplate, File, JSON) {
+define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/start.html", "raw!try/templates/config.json", "raw!try/templates/App.xml", "raw!try/templates/AppClass.js", "try/model/File", "JSON", "try/model/Project"], function(Application, _, List, start, config, AppTemplate, AppClassTemplate, File, JSON, Project) {
 
     var modeMap = {
         js: "javascript"
@@ -15,36 +15,57 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
             selectedTab: null,
             selectedFile: null,
 
-            files: List,
+            project: null,
+
             openFiles: List,
 
-            newFileDialog: null
+            newFileDialog: null,
+
+            /***
+             * @type js.data.DataSource
+             */
+            dataSource: null
         },
 
-        ctor: function() {
+        _initializationComplete: function() {
             this.callBase();
 
-            this.createDefaultFiles();
-            this.$.openFiles.reset(this.$.files.toArray());
+            this.openProject(this.createNewProject());
+        },
 
+        openProject: function(project) {
+
+            this.set("project", project);
+
+            if (project) {
+                this.$.openFiles.reset(project.$.files.toArray());
+            }
+        },
+
+        createNewProject: function() {
+            var project = this.$.dataSource.createEntity(Project);
+            project.$.files.add(this.createDefaultFiles());
+            return project;
         },
 
         createDefaultFiles: function() {
 
-            var files = this.$.files;
-            files.clear();
+            var files = [];
 
             var file = new File({
                 path: "app/App.xml"
             });
+
             file.set("content", AppTemplate);
-            files.add(file);
+            files.push(file);
 
             file = new File({
                 path: "app/AppClass.js"
             });
             file.set("content", AppClassTemplate);
-            files.add(file);
+            files.push(file);
+
+            return files;
 
         },
 
@@ -54,11 +75,13 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
 
             newFileDialog.showModal(function(err, wnd, files) {
 
+                var project = self.$.project;
+
                 if (files) {
                     for (var i = 0; i < files.length; i++) {
                         var file = files[i];
 
-                        self.$.files.add(file);
+                        project.$.files.add(file);
                         self.openFile(file);
                     }
                 }
@@ -109,6 +132,10 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
                 }
             }
 
+        },
+
+        startOver: function() {
+            this.openProject(this.createNewProject());
         },
 
         run: function() {

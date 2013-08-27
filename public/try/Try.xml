@@ -1,7 +1,12 @@
 <?xml version="1.0"?>
 <try:TryClass xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:js="js.core" xmlns:ui="js.ui" xmlns:try="try" xmlns:window="try.window" xmlns:editor="try.editor"
-        >
+              xmlns:js="js.core" xmlns:ui="js.ui" xmlns:try="try" xmlns:window="try.window" xmlns:editor="try.editor" xmlns:data="js.data">
+
+    <js:Injection>
+        <data:RestDataSource  cid="dataSource">
+            <TryDataSourceConfiguration xmlns="try.data" />
+        </data:RestDataSource>
+    </js:Injection>
 
     <header id="header">
         <div class="branding">
@@ -10,6 +15,9 @@
         </div>
         <div class="actions">
             <ul>
+                <li class="new">
+                    <a onclick="startOver">New</a>
+                </li>
                 <li class="run">
                     <a onclick="run">Run</a>
                 </li>
@@ -29,7 +37,7 @@
                     <div>
                         <a onclick="addNewFile">+ Add file</a>
                     </div>
-                    <ui:SelectionView items="{files}" itemKey="file" class="files">
+                    <ui:SelectionView items="{project.files}" itemKey="file" class="files">
                         <js:Template name="item">
                             <div class="{file.extension()}">
                                 <a onclick="openFile(file)">{file.path}</a>

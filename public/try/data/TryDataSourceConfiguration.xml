@@ -1,0 +1,5 @@
+<DataSourceConfiguration xmlns="js.conf">
+    <ResourceConfiguration modelClassName="try.model.Project" path="projects">
+        <ResourceConfiguration modelClassName="try.model.File" path="issueTypes" upsert="true"/>
+    </ResourceConfiguration>
+</DataSourceConfiguration>
