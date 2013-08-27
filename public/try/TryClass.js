@@ -1,4 +1,4 @@
-define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/start.html", "raw!try/templates/config.json", "raw!try/templates/App.xml", "raw!try/templates/AppClass.js", "try/model/File", "JSON", "try/model/Project"], function(Application, _, List, start, config, AppTemplate, AppClassTemplate, File, JSON, Project) {
+define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/start.html", "raw!try/templates/config.json", "raw!try/templates/App.xml", "raw!try/templates/AppClass.js", "try/model/File", "JSON", "try/model/Project", "js/core/History"], function(Application, _, List, start, config, AppTemplate, AppClassTemplate, File, JSON, Project, History) {
 
     var modeMap = {
         js: "javascript"
@@ -27,10 +27,21 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
             dataSource: null
         },
 
+        inject: {
+            history: History
+        },
+
         _initializationComplete: function() {
             this.callBase();
 
             this.openProject(this.createNewProject());
+        },
+
+        start: function() {
+
+            this.$.history.set("useState", true);
+
+            this.callBase();
         },
 
         openProject: function(project) {
