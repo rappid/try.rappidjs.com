@@ -3,7 +3,7 @@
               xmlns:js="js.core" xmlns:ui="js.ui" xmlns:try="try" xmlns:window="try.window" xmlns:editor="try.editor" xmlns:data="js.data">
 
     <js:Injection>
-        <data:RestDataSource  cid="dataSource">
+        <data:RestDataSource  cid="dataSource" gateway="/api" endPoint="//try.rappidjs.com/api">
             <TryDataSourceConfiguration xmlns="try.data" />
         </data:RestDataSource>
     </js:Injection>
