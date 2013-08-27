@@ -161,7 +161,7 @@ define(["js/core/Application", "underscore", "js/core/List", "raw!try/templates/
             var doc = contentFrame.$el.contentWindow || contentFrame.$.el.contentDocument,
                 wnd = contentFrame.$el.contentWindow,
                 runConfig,
-                files = this.$.files;
+                files = this.$.project.$.files;
 
             runConfig = JSON.parse(config);
 
