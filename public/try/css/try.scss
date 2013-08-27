@@ -124,6 +124,55 @@ header {
 
   }
 
+  .awesome {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -100px;
+    margin-top: -100px;
+
+    text-align: center;
+    background: white;
+    border-radius: 100px;
+
+    color: $brand;
+    box-shadow: 0 1px 3px gray;
+
+    .bubblingG {
+      text-align: center;
+      width: 200px;
+      margin-top: 90px;
+      height: 24px;
+    }
+
+    .bubblingG span {
+      display: inline-block;
+      vertical-align: middle;
+      width: 10px;
+      height: 10px;
+      background: $brand;
+      -webkit-border-radius: 50px;
+      -webkit-animation: bubblingG 1.3s infinite alternate;
+    }
+
+    #bubblingG_1 {
+      -webkit-animation-delay: 0s;
+    }
+
+    #bubblingG_2 {
+      -webkit-animation-delay: 0.3s;
+    }
+
+    #bubblingG_3 {
+      -webkit-animation-delay: 0.6s;
+    }
+
+
+
+  }
+
   #content {
     position: absolute;
     left: $sidebarWidth;
@@ -388,3 +437,19 @@ header {
   color: white;
 }
 
+@-webkit-keyframes bubblingG {
+  0% {
+    width: 10px;
+    height: 10px;
+    background-color: $brand;
+    -webkit-transform: translateY(0);
+  }
+
+  100% {
+    width: 24px;
+    height: 24px;
+    background-color: $lightBackground;
+    -webkit-transform: translateY(-21px);
+  }
+
+}

@@ -9,10 +9,12 @@
         </data:RestDataSource>
     </js:Injection>
 
-    <js:Router cid="router"/>
+    <js:Router cid="router">
+        <conf:RouteConfiguration route="^.*$" onexec="loadRunModule"/>
+    </js:Router>
 
-    <js:ModuleLoader router="{router}">
-        <conf:ModuleConfiguration name="run" moduleClass="try.module.Run" route="^.*$" />
+    <js:ModuleLoader cid="moduleLoader">
+        <conf:ModuleConfiguration name="run" moduleClass="try.module.Run" />
         
         <header id="header">
             <div class="branding">
@@ -34,6 +36,14 @@
                 </ul>
             </div>
             <div id="content">
+                <div class="awesome" visible="{not(moduleLoaded)}">
+                    <div class="bubblingG">
+                        <span id="bubblingG_1" />
+                        <span id="bubblingG_2" />
+                        <span id="bubblingG_3" />
+                    </div>
+                    <small>Initialization the awesomeness.</small>
+                </div>
                 <ui:ContentPlaceHolder name="main"/>
             </div>
         </div>
