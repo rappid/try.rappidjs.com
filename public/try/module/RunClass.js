@@ -175,6 +175,7 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
                     runConfig.xamlClasses.push(file.$.path.replace(/\.xml$/i, ""));
                     runConfig.paths[path] = "data:" + file.$.content;
                 } else {
+                    // TODO: use base64 after release of requirejs 2.1.9 which supports data urls
                     runConfig.paths[path] = "data:text/javascript," + file.$.content + "\n//";
                 }
 
