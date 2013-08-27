@@ -10,6 +10,7 @@ $dark: #373737;
 $lightBackground: #F0F0F0;
 $lightBorder: #e1e1e1;
 $grayHighlight: lighten($lightBackground, 10%);
+$headerHeight: 35px;
 
 html, body {
   margin: 0;
@@ -40,11 +41,16 @@ ul {
 header {
   background: $brand;
   color: white;
+  min-height: $headerHeight;
+
+  > div {
+    display: inline-block;
+  }
 
   .branding {
-    display: inline-block;
     width: $sidebarWidth;
     font-family: "Courier New";
+    line-height: $headerHeight;
 
     box-sizing: border-box;
     padding-left: 10px;
@@ -78,7 +84,7 @@ header {
 
 #wrapper {
   position: absolute;
-  top: 35px;
+  top: $headerHeight + 1px;
   width: 100%;
   bottom: 0;
 

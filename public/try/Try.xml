@@ -1,116 +1,43 @@
 <?xml version="1.0"?>
 <try:TryClass xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:js="js.core" xmlns:ui="js.ui" xmlns:try="try" xmlns:window="try.window" xmlns:editor="try.editor" xmlns:data="js.data">
+              xmlns:js="js.core" xmlns:ui="js.ui" xmlns:try="try" xmlns:data="js.data"
+              xmlns:view="try.view" xmlns:conf="js.conf">
 
-    <js:Injection>
+    <js:Injection cid="injection">
         <data:RestDataSource  cid="dataSource" gateway="/api" endPoint="//try.rappidjs.com/api">
             <TryDataSourceConfiguration xmlns="try.data" />
         </data:RestDataSource>
     </js:Injection>
 
-    <header id="header">
-        <div class="branding">
-            Try
-            <span>&lt;rAppid:js /&gt;</span>
-        </div>
-        <div class="actions">
-            <ul>
-                <li class="new">
-                    <a onclick="startOver">New</a>
-                </li>
-                <li class="run">
-                    <a onclick="run">Run</a>
-                </li>
-                <!--<li class="save">-->
-                <!--<a>Save</a>-->
-                <!--</li>-->
-            </ul>
-        </div>
-    </header>
+    <js:Router cid="router"/>
 
-    <div id="wrapper">
-        <div id="sidebar">
-
-            <ul>
-                <li>
-                    <h2>Project</h2>
-                    <div>
-                        <a onclick="addNewFile">+ Add file</a>
-                    </div>
-                    <ui:SelectionView items="{project.files}" itemKey="file" class="files">
-                        <js:Template name="item">
-                            <div class="{file.extension()}">
-                                <a onclick="openFile(file)">{file.path}</a>
-                            </div>
-                        </js:Template>
-                    </ui:SelectionView>
-                </li>
-                <li>
-                    <h2>Info</h2>
-                    <p>Create and maintained by the authors of rAppid:js
-                        <a target="_blank" href="http://tonyfindeisen.de">Tony Findeisen</a>
-                        and
-                        <a target="_blank" href="https://twiiter.com/krebbl">Marcus Krejpowicz</a>.
-                    </p>
-                    <p>
-                        Inspired by <a target="_blank" href="http://jsfiddle.net/">jsfiddle</a>. Powered up with
-                        <a target="_blank" href="http://codemirror.net/">CodeMirror</a>.
-                    </p>
-
-                    <h3>License</h3>
-                    <p>All code belongs to the poster and no license is enforced.</p>
-                    <p>The authors of try.rappidjs.com are not responsible or liable for
-                        any loss or damage of any kind during the usage of provided code.</p>
-
-                    <h3>Links</h3>
-                    <p>
-                        <a target="_blank" href="http://www.rappidjs.com">Install</a> &lt;rAppid:js /&gt;,
-                        read the
-                        <a target="_blank" href="http://wiki.rappidjs.com">documentation</a> and
-                        <a target="_blank" href="https://github.com/rappid/rAppid.js">contribute</a>
-                        to the framework.
-                    </p>
-                    <p>
-                        Start reading our
-                        <a target="_blank" href="http://blog.rappidjs.com">blog</a>
-                        and
-                        <a target="_blank" href="https://twiiter.com/rappidjs">follow us</a>.
-                    </p>
-                </li>
-            </ul>
-
-        </div>
-        <div id="content">
-            <div class="left">
-                <div class="files">
-                    <ui:TabView selectedTab="{{selectedTab}}" cid="openFilesTabView">
-                        <js:Template name="tab">
-                            <a class="close" onclick="closeFile(item.file)">x</a>
-                            <ui:Link class="label" label="{item.title}"/>
-                        </js:Template>
-
-                        <js:Repeat items="{openFiles}" itemKey="file">
-                            <ui:Tab title="{file.path}">
-                                <editor:Editor content="{{file.content}}" mode="{getMode(file)}"/>
-                            </ui:Tab>
-                        </js:Repeat>
-                    </ui:TabView>
-                </div>
+    <js:ModuleLoader router="{router}">
+        <conf:ModuleConfiguration name="run" moduleClass="try.module.Run" route="^.*$" />
+        
+        <header id="header">
+            <div class="branding">
+                Try
+                <span>&lt;rAppid:js /&gt;</span>
             </div>
+            <ui:ContentPlaceHolder name="header" />
+        </header>
 
-            <div class="right">
-                <div id="result" cid="result"/>
+        <div id="wrapper">
+            <div id="sidebar">
+                <ul>
+                    <li>
+                        <ui:ContentPlaceHolder name="sidebar" />
+                    </li>
+                    <li>
+                        <view:Info />
+                    </li>
+                </ul>
             </div>
-
+            <div id="content">
+                <ui:ContentPlaceHolder name="main"/>
+            </div>
         </div>
-    </div>
 
-    <js:Template cid="contentFrameTemplate" name="contentFrame">
-        <iframe sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts"/>
-    </js:Template>
-
-    <js:Content>
-        <window:NewFileDialog cid="newFileDialog"/>
-    </js:Content>
+    </js:ModuleLoader>
 
 </try:TryClass>

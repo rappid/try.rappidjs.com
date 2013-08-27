@@ -27,10 +27,10 @@
         "js/ui/field/TextArea",
         "try/Try",
         "try/data/TryDataSourceConfiguration",
+        "try/module/Run",
         "try/templates/App",
-        "try/window/NewFileDialog",
-        "webtest/test/ui/ItemsViewTest",
-        "webtest/test/ui/SelectionViewTest"
+        "try/view/Info",
+        "try/window/NewFileDialog"
     ],
     "namespaceMap": null,
     "rewriteMap": null,

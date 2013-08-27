@@ -1,0 +1,69 @@
+<module:RunClass xmlns:module="try.module" xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:js="js.core" xmlns:ui="js.ui"
+                 xmlns:window="try.window" xmlns:editor="try.editor">
+
+    <js:Content name="header">
+        <div class="actions">
+            <ul>
+                <li class="new">
+                    <a onclick="startOver">New</a>
+                </li>
+                <li class="run">
+                    <a onclick="run">Run</a>
+                </li>
+                <!--<li class="save">-->
+                <!--<a>Save</a>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </js:Content>
+
+    <js:Content name="main">
+        <div class="left">
+            <div class="files">
+                <ui:TabView selectedTab="{{selectedTab}}" cid="openFilesTabView">
+                    <js:Template name="tab">
+                        <a class="close" onclick="closeFile(item.file)">x</a>
+                        <ui:Link class="label" label="{item.title}"/>
+                    </js:Template>
+
+                    <js:Repeat items="{openFiles}" itemKey="file">
+                        <ui:Tab title="{file.path}">
+                            <editor:Editor content="{{file.content}}" mode="{getMode(file)}"/>
+                        </ui:Tab>
+                    </js:Repeat>
+                </ui:TabView>
+            </div>
+        </div>
+
+        <div class="right">
+            <div id="result" cid="result"/>
+        </div>
+
+    </js:Content>
+
+    <js:Content name="sidebar">
+        <h2>Project</h2>
+        <div>
+            <a onclick="addNewFile">+ Add file</a>
+        </div>
+        <ui:SelectionView items="{project.files}" itemKey="file" class="files">
+            <js:Template name="item">
+                <div class="{file.extension()}">
+                    <a onclick="openFile(file)">{file.path}</a>
+                </div>
+            </js:Template>
+        </ui:SelectionView>
+    </js:Content>
+
+
+    <js:Template cid="contentFrameTemplate" name="contentFrame">
+        <iframe sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts"/>
+    </js:Template>
+
+    <js:Content>
+        <window:NewFileDialog cid="newFileDialog"/>
+    </js:Content>
+
+
+</module:RunClass>

@@ -1,0 +1,48 @@
+<ui:View xmlns:ui="js.ui" xmlns="http://www.w3.org/1999/xhtml">
+
+    <h2>Info</h2>
+    <p>Create and maintained by the authors of rAppid:js
+        <a target="_blank" href="http://tonyfindeisen.de">Tony
+            Findeisen
+        </a>
+        and
+        <a target="_blank" href="https://twiiter.com/krebbl">Marcus
+            Krejpowicz</a>.
+    </p>
+    <p>
+        Inspired by<a target="_blank" href="http://jsfiddle.net/">
+        jsfiddle</a>. Powered up with
+        <a target="_blank" href="http://codemirror.net/">
+            CodeMirror</a>.
+    </p>
+
+    <h3>License</h3>
+    <p>All code belongs to the poster and no license is enforced.</p>
+    <p>The authors of try.rappidjs.com are not responsible or liable
+        for
+        any loss or damage of any kind during the usage of provided
+        code.
+    </p>
+
+    <h3>Links</h3>
+    <p>
+        <a target="_blank" href="http://www.rappidjs.com">Install</a>
+        &lt;rAppid:js /&gt;,
+        read the
+        <a target="_blank" href="http://wiki.rappidjs.com">
+            documentation
+        </a>
+        and
+        <a target="_blank" href="https://github.com/rappid/rAppid.js">
+            contribute
+        </a>
+        to the framework.
+    </p>
+    <p>
+        Start reading our
+        <a target="_blank" href="http://blog.rappidjs.com">blog</a>
+        and
+        <a target="_blank" href="https://twiiter.com/rappidjs">follow
+            us</a>.
+    </p>
+</ui:View>
