@@ -1,4 +1,4 @@
-define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates/start.html", "raw!try/templates/config.json", "raw!try/templates/App.xml", "raw!try/templates/AppClass.js", "try/model/File", "JSON", "try/model/Project", "js/data/DataSource"], function (TryModule, _, List, start, config, AppTemplate, AppClassTemplate, File, JSON, Project, DataSource) {
+define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates/start.html", "raw!try/templates/config.json", "raw!try/templates/App.xml", "raw!try/templates/AppClass.js", "JSON", "try/model/Project", "js/data/DataSource", "js/core/History"], function (TryModule, _, List, start, config, AppTemplate, AppClassTemplate, JSON, Project, DataSource, History) {
 
 
     var modeMap = {
@@ -24,17 +24,42 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
             /***
              * @codeBehind
              */
-            newFileDialog: null
+            newFileDialog: null,
+
+            saving: false
         },
 
         inject: {
-            dataSource: DataSource
+            dataSource: DataSource,
+            history: History
         },
 
-        _initializationComplete: function () {
-            this.callBase();
-
+        defaultRoute: function() {
             this.openProject(this.createNewProject());
+        },
+
+        loadProject: function(routeContext, projectId) {
+
+            routeContext.end();
+
+            var project = this.$.dataSource.createEntity(Project, projectId),
+                self = this;
+
+            project.fetch(null, function(err) {
+
+                if (err) {
+                    routeContext.navigate("");
+                } else {
+                    self.openProject(project);
+                    routeContext.callback();
+                }
+
+            });
+
+        }.async(),
+
+        fallbackRoute: function() {
+            this.$.history.navigate("", false);
         },
 
         openProject: function (project) {
@@ -48,25 +73,26 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
 
         createNewProject: function () {
             var project = this.$.dataSource.createEntity(Project);
-            project.$.files.add(this.createDefaultFiles());
+            project.$.files.add(this.createDefaultFiles(project));
             return project;
         },
 
-        createDefaultFiles: function () {
+        createDefaultFiles: function (project) {
 
             var files = [];
 
-            var file = new File({
-                path: "app/App.xml"
+            var file = project.createFile();
+            file.set({
+                path: "app/App.xml",
+                content: AppTemplate
             });
-
-            file.set("content", AppTemplate);
             files.push(file);
 
-            file = new File({
-                path: "app/AppClass.js"
+            var file = project.createFile();
+            file.set({
+                path: "app/AppClass.js",
+                content: AppClassTemplate
             });
-            file.set("content", AppClassTemplate);
             files.push(file);
 
             return files;
@@ -142,6 +168,35 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
             this.openProject(this.createNewProject());
         },
 
+        save: function(callback) {
+
+            var self = this,
+                history = this.$.history,
+                project = this.$.project;
+
+            if(this.$.saving) {
+                // TODO: invoke another save later
+                callback("already saving");
+                return;
+            }
+
+            this.set("saving", true);
+
+            project.save(null, function(err) {
+                self.set("saving", false);
+
+                if (err) {
+                    // TODO: show some error message
+                    console.error(err);
+                } else {
+                    history.navigate("project/" + project.$.id, true, false);
+                }
+
+                callback && callback(err);
+            });
+
+        },
+
         run: function () {
 
             var contentFrame = this.$.contentFrameTemplate.createInstance(),
@@ -164,9 +219,8 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
                 version = "";
             }
 
-            if (version) {
-                runConfig.baseUrl = "" + version;
-            }
+            runConfig.baseUrl = "/" + (version || "");
+
 
             files.each(function (file) {
                 var path = file.$.path.replace(/\.[^.]+$/, "");

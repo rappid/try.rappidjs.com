@@ -1,6 +1,12 @@
 <module:RunClass xmlns:module="try.module" xmlns="http://www.w3.org/1999/xhtml"
                  xmlns:js="js.core" xmlns:ui="js.ui"
-                 xmlns:window="try.window" xmlns:editor="try.editor">
+                 xmlns:window="try.window" xmlns:editor="try.editor" xmlns:conf="js.conf">
+
+    <js:Router>
+        <conf:RouteConfiguration route="^$" onexec="defaultRoute" />
+        <conf:RouteConfiguration route="^project/([0-9a-f]{24})$" onexec="loadProject"/>
+        <conf:RouteConfiguration route="^.+$" onexec="fallbackRoute"/>
+    </js:Router>
 
     <js:Content name="header">
         <div class="actions">
@@ -11,9 +17,9 @@
                 <li class="run">
                     <a onclick="run">Run</a>
                 </li>
-                <!--<li class="save">-->
-                <!--<a>Save</a>-->
-                <!--</li>-->
+                <li class="save" enabled="{not(saving)}">
+                    <a onclick="save()">Save</a>
+                </li>
             </ul>
         </div>
     </js:Content>
