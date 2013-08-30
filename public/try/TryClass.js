@@ -48,7 +48,7 @@ define(["js/core/Application", "js/core/Bindable", "js/core/History"], function(
                     // node rendering, wait for module loaded and pass loading state
                     routeContext.callback(err);
                 }
-            });
+            }, routeContext);
 
         }.async()
 
