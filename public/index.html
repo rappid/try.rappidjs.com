@@ -3,8 +3,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <link rel="stylesheet" type="text/css" href="try/lib/lib/codemirror.css"/>
-    <link rel="stylesheet" href="try/css/try.css"/>
+    <link rel="stylesheet" type="text/css" href="/try/lib/lib/codemirror.css"/>
+    <link rel="stylesheet" href="/try/css/try.css"/>
+
 
     <meta name="robots" content="index,follow"/>
     <meta name="author" content="Tony Findeisen, Marcus Krejpowicz">
@@ -12,8 +13,8 @@
 
     <title>Try rAppid.js online without installation</title>
 
-    <script type="text/javascript" src="js/lib/require.js" data-usage="lib"></script>
-    <script type="text/javascript" src="js/lib/rAppid.js" data-usage="lib"></script>
+    <script type="text/javascript" src="/js/lib/require.js" data-usage="lib"></script>
+    <script type="text/javascript" src="/js/lib/rAppid.js" data-usage="lib"></script>
 
     <meta name="fragment" content="!">
 
@@ -29,6 +30,9 @@
 <script type="text/javascript" data-usage="bootstrap">
     rAppid.bootStrap("try/Try.xml", null, {
         version: "${VERSION}"
+    }, {
+        baseUrl: "/",
+        loadConfiguration: "config.json"
     });
 </script>
 </body>
