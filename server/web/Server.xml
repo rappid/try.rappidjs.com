@@ -1,0 +1,50 @@
+<Server xmlns="srv.core"
+        xmlns:handler="srv.handler" xmlns:endpoint="srv.endpoint" xmlns:data="srv.data"
+        xmlns:auth="web.auth"
+        xmlns:conf="js.conf"
+        xmlns:tryData="try.data"
+        >
+
+    <EndPoints>
+        <endpoint:HttpEndPoint port="{ENV().port}"/>
+    </EndPoints>
+
+    <data:MongoDataSource cid="appDataSource" database="{ENV().database}">
+        <tryData:TryDataSourceConfiguration/>
+    </data:MongoDataSource>
+
+    <!-- DataSource for Identites and Authentications -->
+    <data:MongoDataSource cid="authDataSource" database="{ENV().database}">
+        <conf:DataSourceConfiguration>
+            <conf:ResourceConfiguration modelClassName="srv.core.Identity" path="identities"/>
+            <conf:ResourceConfiguration modelClassName="srv.auth.Authentication" path="authentications" upsert="true"/>
+        </conf:DataSourceConfiguration>
+    </data:MongoDataSource>
+
+    <IdentityService cid="identityService" dataSource="{authDataSource}"/>
+
+    <AuthenticationService userDataSource="{appDataSource}"
+                           dataSource="{authDataSource}"
+                           identityService="{identityService}">
+        <!--<auth:DataSourceAuthenticationProvider dataSource="{appDataSource}"-->
+                                               <!--usernameField="email"-->
+                                               <!--userModelClassName="rest.model.User"/>-->
+    </AuthenticationService>
+
+    <AuthorizationService>
+        <auth:ProjectAuthorizationProvider />
+    </AuthorizationService>
+
+    <Filters>
+        <!--<filter:TokenAuthenticationFilter/>-->
+    </Filters>
+
+    <Handlers>
+        <handler:AuthenticationHandler/>
+        <handler:RegistrationHandler/>
+        <handler:RestHandler dataSource="{appDataSource}">
+            <tryData:TryDataSourceConfiguration/>
+        </handler:RestHandler>
+        <handler:StaticFileHandler/>
+    </Handlers>
+</Server>
