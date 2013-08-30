@@ -1,4 +1,4 @@
-define(["js/data/Model"], function(Model) {
+define(["js/data/Entity"], function(Model) {
 
     var mimeTypeMap = {
         "xml": "application/xml",
@@ -6,11 +6,16 @@ define(["js/data/Model"], function(Model) {
         "json": "application/json"
     };
 
-    return Model.inherit("try.model.File", {
+    return Model.inherit("try.entity.File", {
 
         defaults: {
             path: "",
             content: ""
+        },
+
+        schema: {
+            path: String,
+            content: String
         },
 
         mimeType: function() {
