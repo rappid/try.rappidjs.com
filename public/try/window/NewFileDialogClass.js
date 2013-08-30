@@ -1,4 +1,4 @@
-define(["xaml!js/ui/Dialog", "raw!try/templates/Class.template", "raw!try/templates/Xaml.template", "try/model/File"], function (Dialog, ClassTemplate, XamlTemplate, File) {
+define(["xaml!js/ui/Dialog", "raw!try/templates/Class.template", "raw!try/templates/Xaml.template", "try/entity/File"], function (Dialog, ClassTemplate, XamlTemplate, File) {
 
     var templateMap = {
         Model: {
