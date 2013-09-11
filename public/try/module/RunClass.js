@@ -81,19 +81,15 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
 
             var files = [];
 
-            var file = project.createFile();
-            file.set({
+            files.push(project.createFile({
                 path: "app/App.xml",
                 content: AppTemplate
-            });
-            files.push(file);
+            }));
 
-            var file = project.createFile();
-            file.set({
+            files.push(project.createFile({
                 path: "app/AppClass.js",
                 content: AppClassTemplate
-            });
-            files.push(file);
+            }));
 
             return files;
 
