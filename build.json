@@ -3,7 +3,8 @@
         {
             "name": "try/Try",
             "include": [
-                "xaml!try/Try"
+                "xaml!try/Try",
+                "xaml!try/module/Run"
             ]
         }
     ],
