@@ -3,7 +3,7 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
 
     var modeMap = {
         js: "javascript"
-    };
+    }, undefined;
 
     return TryModule.inherit({
 
@@ -159,7 +159,9 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
             this.openProject(this.createNewProject());
         },
 
-        save: function(callback) {
+        save: function(e, callback) {
+
+            e.preventDefault();
 
             var self = this,
                 history = this.$.history,
@@ -172,6 +174,8 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
             }
 
             this.set("saving", true);
+
+            project.set(id, undefined);
 
             project.save(null, function(err) {
                 self.set("saving", false);
@@ -188,7 +192,9 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
 
         },
 
-        run: function () {
+        run: function (e) {
+
+            e.preventDefault();
 
             var contentFrame = this.$.contentFrameTemplate.createInstance(),
                 result = this.$.result;
@@ -232,13 +238,14 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
 
             doc.open();
             doc.write(start.replace(/\$\{version\}/g, version));
-            doc.close();
 
             wnd.onload = function () {
                 wnd.window.rAppid.bootStrap("app/App.xml", null, null, runConfig, function (err) {
                     err && console.error(err);
                 });
-            }
+            };
+
+            doc.close();
 
         },
 

@@ -18,7 +18,7 @@
                     <a onclick="run">Run</a>
                 </li>
                 <li class="save" enabled="{not(saving)}">
-                    <a onclick="save()">Save</a>
+                    <a onclick="save">Save</a>
                 </li>
             </ul>
         </div>
