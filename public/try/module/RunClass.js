@@ -175,7 +175,8 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
 
             this.set("saving", true);
 
-            project.set(id, undefined);
+            // always safe a new version
+            project.set("id", undefined);
 
             project.save(null, function(err) {
                 self.set("saving", false);
