@@ -28,10 +28,16 @@
 </head>
 <body>
 <script type="text/javascript" data-usage="bootstrap">
+
+    var version = "${VERSION}";
+    if (/^\$/.test(version)) {
+        version = null;
+    }
+
     rAppid.bootStrap("try/Try.xml", null, {
-        version: "${VERSION}"
+        version: version
     }, {
-        baseUrl: "/",
+        baseUrl: "/" + (version ? version + "/" : ""),
         loadConfiguration: "config.json"
     });
 </script>
