@@ -24,7 +24,7 @@ define(["js/core/Application", "js/core/Bindable", "js/core/History"], function(
         },
 
         start: function() {
-            this.$.history.set("useState", true);
+            this.$.history.set("useState", this.runsInBrowser() && ("onpopstate" in window));
             this.$.injection.addInstance("context", this.$.context);
 
             this.callBase();
