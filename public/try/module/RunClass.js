@@ -94,9 +94,11 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
 
         },
 
-        addNewFile: function () {
+        addNewFile: function (e) {
             var newFileDialog = this.$.newFileDialog,
                 self = this;
+
+            e.preventDefault();
 
             newFileDialog.showModal(function (err, wnd, files) {
 
@@ -123,7 +125,9 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
             return modeMap[extension] || extension;
         },
 
-        openFile: function (file) {
+        openFile: function (event, file) {
+
+            event.preventDefault();
 
             if (!file) {
                 return;

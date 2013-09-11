@@ -56,7 +56,7 @@
         <ui:SelectionView items="{project.files}" itemKey="file" class="files">
             <js:Template name="item">
                 <div class="{file.extension()}" selected="{eql(file,selectedTab.file)}">
-                    <a onclick="openFile(file)">{file.path}</a>
+                    <a onclick="openFile(event, file)">{file.path}</a>
                 </div>
             </js:Template>
         </ui:SelectionView>
