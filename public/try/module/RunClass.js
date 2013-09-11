@@ -10,7 +10,6 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
         defaults: {
 
             selectedTab: null,
-            selectedFile: null,
 
             project: null,
 
@@ -134,31 +133,23 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
                 this.$.openFiles.add(file);
             }
 
-            this.set("selectedFile", file);
-        },
-
-        closeFile: function (file) {
-            this.$.openFiles.remove(file);
-            this.set("selectedFile", this.$.openFiles.at(0));
-        },
-
-        _commitSelectedFile: function (file) {
-
-            if (!file) {
-                return;
-            }
-
             var openFilesTabView = this.$.openFilesTabView;
 
             for (var i = 0; i < openFilesTabView.$children.length; i++) {
                 var tab = openFilesTabView.$children[i];
-                if (tab.$._file === file) {
+                if (tab.$.file === file) {
                     this.set("selectedTab", tab);
-                    return;
+                    break;
                 }
             }
 
         },
+
+        closeFile: function (file) {
+            this.$.openFiles.remove(file);
+        },
+
+
 
         startOver: function () {
             this.openProject(this.createNewProject());
@@ -245,6 +236,10 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
                 });
             }
 
+        },
+
+        eql: function(a, b){
+            return a === b;
         }
 
     });
