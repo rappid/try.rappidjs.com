@@ -95,6 +95,25 @@ header {
 
     box-sizing: border-box;
 
+    .files {
+
+      a {
+        padding: 2px;
+        display: inline-block;
+      }
+
+      a:hover {
+        background-color: rgba($brand, 0.3);
+      }
+
+      .active a,
+      .active a:hover {
+        background: $brand;
+        color: white;
+      }
+
+    }
+
     a {
       color: $brand;
     }
