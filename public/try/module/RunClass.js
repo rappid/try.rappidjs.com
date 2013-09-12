@@ -159,17 +159,22 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
             this.openProject(this.createNewProject());
         },
 
-        save: function(e, callback) {
+        save: function(e) {
 
             e.preventDefault();
 
+            this._save();
+
+        },
+
+        _save: function(callback) {
             var self = this,
                 history = this.$.history,
                 project = this.$.project;
 
-            if(this.$.saving) {
+            if (this.$.saving) {
                 // TODO: invoke another save later
-                callback("already saving");
+                callback && callback("already saving");
                 return;
             }
 
@@ -178,7 +183,7 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
             // always safe a new version
             project.set("id", undefined);
 
-            project.save(null, function(err) {
+            project.save(null, function (err) {
                 self.set("saving", false);
 
                 if (err) {
@@ -189,6 +194,7 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
                 }
 
                 callback && callback(err);
+
             });
 
         },
