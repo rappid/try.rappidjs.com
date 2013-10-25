@@ -17,7 +17,8 @@ rm -rf public public-build server
 git reset --hard HEAD
 git pull origin dev;
 
-# npm install
+# install dependencies
+npm install > /dev/null
 
 echo "Dependencies: ${DEPENDENCIES}"
 
@@ -77,6 +78,8 @@ cp -r -L server tmp
 cp -r ${DEPENDENCIES}/rAppid.js tmp
 cp -r public/ tmp/
 cp index.js tmp
+mv node_modules/ tmp/
+
 cp public/config.json tmp/server/
 cp package.json tmp
 ${RAPPIDJS} version --version ${VERSION} tmp/package.json
