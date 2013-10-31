@@ -1,6 +1,7 @@
 package com.rappidjs.learn.webtest;
 
 import com.rappidjs.learn.webtest.model.File;
+import com.rappidjs.learn.webtest.ui.Project;
 import io.rappid.webtest.testng.TestDevelopment;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -18,11 +19,10 @@ public class WebTest extends io.rappid.webtest.common.WebTest {
      * Tests the initial interface
      */
     @Test()
-    @TestDevelopment
     public void InitialTest() {
 
         IndexPage indexPage = getIndexPage();
-        IndexPage.Project project = indexPage.sideBar().project();
+        Project project = indexPage.sideBar().project();
 
         Assert.assertEquals(project.headline(), "Project");
 
@@ -34,6 +34,27 @@ public class WebTest extends io.rappid.webtest.common.WebTest {
 
         Assert.assertEquals(files.get(0), project.getActiveFile());
     }
+
+    @Test
+    @TestDevelopment
+    public void CheckTabSwitch() {
+
+        IndexPage indexPage = getIndexPage();
+        Project project = indexPage.sideBar().project();
+        IndexPage.CodeView codeView = indexPage.codeView();
+
+        List<File> files = project.getFiles();
+
+        Assert.assertEquals(files.size(), 2);
+        Assert.assertEquals(files.get(0), project.getActiveFile());
+        Assert.assertEquals(codeView.getActiveTab().getLabel().trim(), "app/App.xml");
+
+        project.selectFile(files.get(1));
+
+        Assert.assertEquals(codeView.getActiveTab().getLabel().trim(), "app/AppClass.js");
+
+    }
+
 
     protected IndexPage getIndexPage() {
         driver().get(getStartUrl());
