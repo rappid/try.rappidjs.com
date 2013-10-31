@@ -1,0 +1,20 @@
+language: java
+install:
+  - git clone https://github.com/rappid/webtest.git /tmp/webtest && mvn -f /tmp/webtest/pom.xml clean install
+before_script:
+  - chmod +x bin/sauce_connect_setup.sh && bin/sauce_connect_setup.sh > /dev/null
+script:
+  - "mvn -f test/pom.xml clean integration-test -Dbrowser=chrome -Dgrid.port=4445 -DthreadCount=1 -DstartUrl=http://try-beta.rappidjs.com"
+env:
+  global:
+   - secure: "I0GS9Wb3TihQnj2qeekTvXVW1mgUTyKuXmhckbex/YCVtWZ947p0LMGW6GEfTR5ncYk1mrVFXehowxMMz+iEwsfXPDNdwcdyikhVS17D5Zkpce94BzxjfMUEwB7Clf3JzP2PvMejO4LAGTcbyO09yu3sWi4ML+v9Hd3oAxiaxiU="
+   - secure: "hCliDkLNrXpxosKZFzKQdmorA6oi3JPC5nSTHk7BJAB5T8Or6mpRA0NEMm+BSZClcCoSwZgpaFwulmylTB2aovsuNVHKqczRVzXQJ3Oa5emOs+jITS5aOE7QEZFBPDm261dVHQbZgnlcyEqsderCC64YgBBeD6aw3YNedQ6y7to="
+   - BUILD_NUMBER= <%= ENV['TRAVIS_BUILD_NUMBER'] %>
+   - JOB_NAME=try.rappidjs.com
+branches:
+ only:
+   - dev
+notifications:
+  email:
+    - tony@rappidjs.com
+    - marcus@rappidjs.com

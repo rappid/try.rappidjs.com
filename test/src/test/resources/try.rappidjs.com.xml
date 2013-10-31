@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="try.rappidjs.com" parallel="tests" thread-count="${threadCount}" time-out="600000">
+    <listeners>
+        <listener class-name="io.rappid.webtest.testng.TestResultPrinter"/>
+    </listeners>
+
+    <method-selectors>
+        <method-selector>
+            <selector-class name="io.rappid.webtest.testng.MethodSelector"/>
+        </method-selector>
+    </method-selectors>
+
+    <parameter name="browser" value="${browser}"/>
+
+    <parameter name="grid.port" value="${grid.port}"/>
+    <parameter name="grid.host" value="${grid.host}"/>
+
+    <parameter name="startUrl" value="${startUrl}"/>
+
+    <test name="integration-tests">
+        <classes>
+            <class name="com.rappidjs.learn.webtest.WebTest"/>
+        </classes>
+    </test>
+</suite>
