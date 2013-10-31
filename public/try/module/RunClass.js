@@ -127,7 +127,12 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
 
         openFile: function (event, file) {
 
-            event.preventDefault();
+            if (arguments.length === 1) {
+                file = event;
+                event = null;
+            }
+
+            event && event.preventDefault();
 
             if (!file) {
                 return;
