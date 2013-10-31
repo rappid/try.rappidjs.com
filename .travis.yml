@@ -9,7 +9,7 @@ env:
   global:
    - secure: "I0GS9Wb3TihQnj2qeekTvXVW1mgUTyKuXmhckbex/YCVtWZ947p0LMGW6GEfTR5ncYk1mrVFXehowxMMz+iEwsfXPDNdwcdyikhVS17D5Zkpce94BzxjfMUEwB7Clf3JzP2PvMejO4LAGTcbyO09yu3sWi4ML+v9Hd3oAxiaxiU="
    - secure: "hCliDkLNrXpxosKZFzKQdmorA6oi3JPC5nSTHk7BJAB5T8Or6mpRA0NEMm+BSZClcCoSwZgpaFwulmylTB2aovsuNVHKqczRVzXQJ3Oa5emOs+jITS5aOE7QEZFBPDm261dVHQbZgnlcyEqsderCC64YgBBeD6aw3YNedQ6y7to="
-   - BUILD_NUMBER=<%= ENV['TRAVIS_BUILD_NUMBER'] %>
+   - BUILD_NUMBER= <%= ENV['TRAVIS_BUILD_NUMBER'] %>
    - JOB_NAME=try.rappidjs.com
 branches:
  only:
