@@ -1,6 +1,7 @@
 package com.rappidjs.learn.webtest;
 
 import com.rappidjs.learn.webtest.model.File;
+import com.rappidjs.learn.webtest.ui.NewFileDialog;
 import com.rappidjs.learn.webtest.ui.Project;
 import io.rappid.webtest.testng.TestDevelopment;
 import org.testng.Assert;
@@ -36,7 +37,6 @@ public class WebTest extends io.rappid.webtest.common.WebTest {
     }
 
     @Test
-    @TestDevelopment
     public void CheckTabSwitch() {
 
         IndexPage indexPage = getIndexPage();
@@ -53,6 +53,45 @@ public class WebTest extends io.rappid.webtest.common.WebTest {
 
         Assert.assertEquals(codeView.getActiveTab().getLabel().trim(), "app/AppClass.js");
 
+    }
+
+    @Test
+    @TestDevelopment
+    public void CreateFileDialogTest() {
+
+        IndexPage indexPage = getIndexPage();
+        Project project = indexPage.sideBar().project();
+
+        List<File> files = project.getFiles();
+        Assert.assertEquals(files.size(), 2);
+
+        NewFileDialog fileDialog = project.addNewFile();
+
+        Assert.assertEquals(fileDialog.classNameText().getInput().getValue(), "app.view.Component");
+        Assert.assertEquals(fileDialog.parentClassNameText().getInput().getValue(), "js.ui.View");
+        Assert.assertTrue(fileDialog.xamlCheckbox().isSelected());
+
+        fileDialog.modelButton().click();
+
+        Assert.assertEquals(fileDialog.classNameText().getInput().getValue(), "app.model.Model");
+        Assert.assertEquals(fileDialog.parentClassNameText().getInput().getValue(), "js.core.Model");
+        Assert.assertFalse(fileDialog.xamlCheckbox().isSelected());
+
+        fileDialog.componentButton().click();
+
+        Assert.assertEquals(fileDialog.classNameText().getInput().getValue(), "app.view.Component");
+        Assert.assertEquals(fileDialog.parentClassNameText().getInput().getValue(), "js.ui.View");
+        Assert.assertTrue(fileDialog.xamlCheckbox().isSelected());
+
+        fileDialog.moduleButton().click();
+
+        Assert.assertEquals(fileDialog.classNameText().getInput().getValue(), "app.module.Module");
+        Assert.assertEquals(fileDialog.parentClassNameText().getInput().getValue(), "js.core.Module");
+        Assert.assertTrue(fileDialog.xamlCheckbox().isChecked());
+
+        fileDialog.createButton().click();
+
+        Assert.assertEquals(project.getFiles().size(), 4);
     }
 
 
