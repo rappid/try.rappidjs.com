@@ -232,8 +232,7 @@ define(["try/module/TryModule", "underscore", "js/core/List", "raw!try/templates
                 version = "/" + version;
             }
 
-            runConfig.baseUrl = "/" + (version || "");
-
+            runConfig.baseUrl = "/" + (version || "").replace(/^\//, "");
 
             files.each(function (file) {
                 var path = file.$.path.replace(/\.[^.]+$/, "");
